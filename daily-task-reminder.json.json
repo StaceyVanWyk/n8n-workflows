@@ -1,0 +1,114 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "049ff9d3-16cf-4652-8ad9-0753f0d5fbd1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "46594d83-da7d-44b5-a9da-fc988389d42b",
+              "name": "tasks",
+              "value": "Study Python, Apply for jobs, Practice Cybersecurity",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7b947d11-f54f-4730-835c-94a011e63bed",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const tasks = $json.tasks.split(\", \");\n\nreturn tasks.map(task => {\n  return {\n    task: task,\n    status: \"pending\"\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "5060b3c1-d933-4f46-b6e0-ad634d3da75f",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-04-27T01:48:47.187-04:00",
+          "Readable date": "April 27th 2026, 1:48:47 am",
+          "Readable time": "1:48:47 am",
+          "Day of week": "Monday",
+          "Year": "2026",
+          "Month": "April",
+          "Day of month": "27",
+          "Hour": "01",
+          "Minute": "48",
+          "Second": "47",
+          "Timezone": "Africa/Johannesburg"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "66cfa5a6-c576-4b84-bed3-be66bcf5f5f6",
+  "meta": {
+    "instanceId": "baf04a5e47ca9120c4305800f92828dfd5266f01614ed6fe411470d099c1c077"
+  },
+  "id": "yKs090e9s5GVDBnq",
+  "tags": []
+}
